@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oily/screen/SelectRole.dart';
+import 'package:oily/index.dart';
 
 class GetStarted extends StatefulWidget {
   const GetStarted({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class _GetStartedState extends State<GetStarted> {
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
@@ -34,7 +34,7 @@ class _GetStartedState extends State<GetStarted> {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text("Oil",
                               style: TextStyle(
                                   color: Colors.black,
@@ -50,7 +50,7 @@ class _GetStartedState extends State<GetStarted> {
                               ))
                         ],
                       ),
-                      Text(
+                      const Text(
                         "We serve to solve",
                         style: TextStyle(
                             color: Color.fromRGBO(90, 90, 90, 1),
@@ -67,16 +67,16 @@ class _GetStartedState extends State<GetStarted> {
               borderRadius: BorderRadius.circular(20),
               child: InkWell(
                 onTap: (){
-                  Navigator.pushReplacementNamed(context, SelectRole.route);
+                  Navigator.pushReplacementNamed(context, Index.route);
                 },
-                splashColor: Color(0x229DCEFF),
+                splashColor: const Color(0x229DCEFF),
                 focusColor: Colors.white,
                 hoverColor: Colors.white,
                 highlightColor: Colors.transparent,
                 child: Container(
                   width: MediaQuery.of(context).size.width-50,
-                  padding: EdgeInsets.all(20),
-                  child: Center(
+                  padding: const EdgeInsets.all(20),
+                  child: const Center(
                       child: Text("Get Started",
                         style: TextStyle(
                           color: Color(0xFF92A3FD)
@@ -86,7 +86,7 @@ class _GetStartedState extends State<GetStarted> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             )
           ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:oily/screen/History.dart';
 
 class Litre_box extends StatefulWidget {
-  const Litre_box({Key? key}) : super(key: key);
+  const Litre_box({Key? key, required this.getHistory}) : super(key: key);
 
+  final Function getHistory;
   @override
   _Litre_boxState createState() => _Litre_boxState();
 }
@@ -13,10 +13,10 @@ class _Litre_boxState extends State<Litre_box> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(180, 180, 180, 0.5),
-            offset: const Offset(
+            offset: Offset(
               5.0,
               5.0,
             ),
@@ -25,7 +25,7 @@ class _Litre_boxState extends State<Litre_box> {
           ),
         ],
         borderRadius: BorderRadius.circular(20),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: [
@@ -38,50 +38,50 @@ class _Litre_boxState extends State<Litre_box> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text("Cooking Oil Quota",
+                const Text("Cooking Oil Quota",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 15,
                       fontWeight: FontWeight.w800
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
-                Text("Today you stull can buy",
+                const Text("You still can sell",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 13,
                         fontWeight: FontWeight.w500
                     )
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Material(
-                    color: Color(0xFFC58BF2),
+                    color: const Color(0xFFC58BF2),
                     borderRadius: BorderRadius.circular(10),
                     child: InkWell(
                       onTap: (){
-                        Navigator.pushNamed(context, History.route);
+                        widget.getHistory();
                       },
-                      splashColor: Color(0x229DCEFF),
+                      splashColor: const Color(0x229DCEFF),
                       focusColor: Colors.white,
                       hoverColor: Colors.white,
                       highlightColor: Colors.transparent,
                       child: Container(
-                          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                          child: Text("View History",
+                          padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                          child: const Text("View History",
                             style: TextStyle(color: Colors.white),
                           ),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             // gradient: LinearGradient(
                             //     begin: Alignment.centerLeft,
                             //     end: Alignment.centerRight,
@@ -98,19 +98,19 @@ class _Litre_boxState extends State<Litre_box> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.all(15),
+            decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(topLeft: Radius.circular(20),bottomLeft: Radius.circular(20))
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text("2",
+              children: const [
+                Text("200",
                   style: TextStyle(
                     color: Color(0xFF93A7FE),
                     fontWeight: FontWeight.w800,
-                    fontSize: 40
+                    fontSize: 30
                   ),
                 ),
                 Text("liters",

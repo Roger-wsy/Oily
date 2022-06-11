@@ -11,7 +11,7 @@ class init extends StatefulWidget {
 
 class _initState extends State<init> {
   Future<String> getData()async{
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     return "a";
   }
   @override
@@ -21,9 +21,9 @@ class _initState extends State<init> {
           future: getData(),
           builder: (context,snapshot){
             if(snapshot.hasData){
-              return GetStarted();
+              return const GetStarted();
             }else{
-              return Splash();
+              return const Splash();
             }
           }
         ),

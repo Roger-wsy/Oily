@@ -15,10 +15,10 @@ class _AccountState extends State<Account> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(180, 180, 180, 0.3),
-            offset: const Offset(
+            offset: Offset(
               5.0,
               5.0,
             ),
@@ -27,22 +27,22 @@ class _AccountState extends State<Account> {
           ),
         ]
       ),
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Account",
+          const Text("Account",
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(
             children: [
               Expanded(
                 child: Row(
-                  children: [
+                  children: const [
                     Icon(Icons.person_rounded, color: Color(0xFF92A3FD)),
                     SizedBox(
                       width: 5,
@@ -55,17 +55,17 @@ class _AccountState extends State<Account> {
                   ],
                 ),
               ),
-              Icon(Icons.navigate_next)
+              const Icon(Icons.navigate_next)
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             children: [
               Expanded(
                 child: Row(
-                  children: [
+                  children: const [
                     Icon(Icons.calendar_today, color: Color(0xFF92A3FD)),
                     SizedBox(
                       width: 5,
@@ -78,32 +78,9 @@ class _AccountState extends State<Account> {
                   ],
                 ),
               ),
-              Icon(Icons.navigate_next)
+              const Icon(Icons.navigate_next)
             ],
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Row(
-                  children: [
-                    Icon(Icons.shop_outlined, color: Color(0xFF92A3FD)),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text("Register as Merchant",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w300
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Icon(Icons.navigate_next)
-            ],
-          )
         ],
       ),
     );

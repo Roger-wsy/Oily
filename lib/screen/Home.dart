@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oily/widget/litre_box.dart';
+import 'package:oily/widget/price_chart.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({Key? key, required this.getHistory}) : super(key: key);
 
+  final Function getHistory;
   @override
   _HomeState createState() => _HomeState();
 }
@@ -16,96 +18,48 @@ class _HomeState extends State<Home> {
     return SingleChildScrollView(
       child: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 10),
-              Text(
+              const SizedBox(height: 10),
+              const Text(
                 "Welcome back",
                 style: TextStyle(
                   color: Color.fromRGBO(150,150, 150, 1),
                   fontSize: 15
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 6,
               ),
-              Text(
+              const Text(
                 "Stefani Wong",
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Litre_box(),
-              SizedBox(
+              Litre_box(getHistory: widget.getHistory),
+              const SizedBox(
                 height: 15,
               ),
-              Text(
+              const Text(
                 "Latest Price",
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      Color(0x5592A3FD),
-                      Color(0x559DCEFF)
-                    ]
-                  )
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Cooking Oil Price",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800
-                      ),
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Text("48,400,000 IDR",
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xFF92A3FD),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 60,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
+              const Price_Chart(),
+              const SizedBox(
                 height: 15,
-              ),
-              Text(
-                "Purchase QR Code",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              SizedBox(
-                height: 10,
               ),
             ],
           ),

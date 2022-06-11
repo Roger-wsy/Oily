@@ -15,7 +15,7 @@ class _SplashState extends State<Splash> {
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
@@ -34,7 +34,7 @@ class _SplashState extends State<Splash> {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text("Oil",
                             style: TextStyle(
                               color: Colors.black,

@@ -14,10 +14,10 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black, //change your color here
         ),
-        title: Center(
+        title: const Center(
           child: Text("Profile",
               style: TextStyle(
                 fontSize: 20,
@@ -32,36 +32,43 @@ class _ProfileState extends State<Profile> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Stefani Wong",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset("assets/avatar1.jpeg",width: 40,height: 40,),
+                      const SizedBox(width: 5),
+                      const Text("Stefani Wong",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ],
                   ),
                   Container(
                     child: Material(
-                        color: Color(0xFF92A3FD),
+                        color: const Color(0xFF92A3FD),
                         borderRadius: BorderRadius.circular(10),
                         child: InkWell(
                           onTap: (){
 
                           },
-                          splashColor: Color(0x229DCEFF),
+                          splashColor: const Color(0x229DCEFF),
                           focusColor: Colors.white,
                           hoverColor: Colors.white,
                           highlightColor: Colors.transparent,
                           child: Container(
-                              padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
-                              child: Text("Edit",
+                              padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
+                              child: const Text("Edit",
                                 style: TextStyle(color: Colors.white),
                               ),
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 // gradient: LinearGradient(
                                 //     begin: Alignment.centerLeft,
                                 //     end: Alignment.centerRight,
@@ -77,14 +84,14 @@ class _ProfileState extends State<Profile> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Account(),
-              SizedBox(
+              const Account(),
+              const SizedBox(
                 height: 20,
               ),
-              Other()
+              const Other()
             ],
           ),
         ),
