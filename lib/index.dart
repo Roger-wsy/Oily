@@ -5,6 +5,7 @@ import 'package:oily/screen/Home.dart';
 import 'package:oily/screen/Profile.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:oily/screen/QRScanner.dart';
 
 class Index extends StatefulWidget {
   const Index({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> pages = [Home(), Profile()];
+    List<Widget> pages = [Home(), QRScanner(), Profile()];
 
     return Scaffold(
       body: pages[number],
@@ -60,6 +61,7 @@ class _IndexState extends State<Index> {
         },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.qr_code_sharp), label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: ""),
         ],
       ),
@@ -97,6 +99,7 @@ class _IndexState extends State<Index> {
         }
       }
     }
+    print(_text);
     setState(() {});
   }
 }
