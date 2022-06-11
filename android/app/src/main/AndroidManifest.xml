@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.oily">
+
+    <uses-permission android:name='android.permission.CAMERA' />
+
    <application
         android:label="oily"
         android:name="${applicationName}"
