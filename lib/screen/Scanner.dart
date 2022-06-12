@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 class Scanner extends StatefulWidget {
   const Scanner({Key? key}) : super(key: key);
@@ -15,6 +19,13 @@ class _ScannerState extends State<Scanner> {
   String _scanBarcode = "";
   String _text = "";
   XFile? imageFile;
+
+  bool isNumeric(String s) {
+    if(s == null) {
+      return false;
+    }
+    return double.tryParse(s) != null;
+  }
 
   void getImage(ImageSource source) async {
     try {
@@ -42,12 +53,14 @@ class _ScannerState extends State<Scanner> {
         multiLine: true);
     for (TextBlock block in recognizedText.blocks) {
       for (TextLine line in block.lines) {
+        if(line.text.length==15&&isNumeric(line.text)){
+          text = line.text;
+        }
         if (regex.hasMatch(line.text)) {
           text = line.text;
         }
       }
     }
-
     setState(() {
       _text = text;
     });
@@ -68,9 +81,95 @@ class _ScannerState extends State<Scanner> {
     // setState to update our non-existent appearance.
     if (!mounted) return;
 
-    setState(() {
-      _scanBarcode = barcodeScanRes;
-    });
+    if(barcodeScanRes == "-1"){
+      setState(() {
+        _scanBarcode = "";
+      });
+    }else{
+      setState(() {
+        _scanBarcode = barcodeScanRes;
+      });
+    }
+
+  }
+
+  Future<void> submit()async{
+    EasyLoading.show(status: "Loading");
+    var url = Uri.parse('https://jolly-pro-max.vercel.app/api/check_purchase');
+    var response = await http.post(url,
+        body: {
+            "ic": "4",
+            "retailer_id": "cl4a78wwh00369k7k8seaqm5u",
+            "barcode": _scanBarcode
+          }
+        );
+    EasyLoading.dismiss();
+    final data = jsonDecode(response.body);
+
+    if(data['verified']==true){
+      await showDialog(
+          context: context,
+          builder: (context){
+            return AlertDialog(
+                title: Text("Success",
+                    style: TextStyle(
+                      color: Colors.green
+                  ),
+                ),
+                content: Text("the transaction is successfully carried out"),
+                actions: [
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.green)
+                    ),
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "OK",
+                        style: TextStyle(
+                          color: Colors.white
+                        ),
+                      ),
+                  )
+                ]
+            );
+          }
+        );
+    }else{
+      await showDialog(
+          context: context,
+          builder: (context){
+            return AlertDialog(
+                title: Text("Failed",
+                  style: TextStyle(
+                      color: Colors.red
+                  ),
+                ),
+                content: Text("the transaction is failed"),
+                actions: [
+                  ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.red)
+                    ),
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "OK",
+                      style: TextStyle(
+                          color: Colors.white
+                      ),
+                    ),
+                  )
+                ]
+            );
+          }
+      );
+    }
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
   }
 
   @override
@@ -199,10 +298,13 @@ class _ScannerState extends State<Scanner> {
                           color:  (_text==""||_scanBarcode=="")?Colors.grey:const Color(0xFF92A3FD),
                           borderRadius: BorderRadius.circular(10),
                           child: InkWell(
-                            onTap: (_text==""||_scanBarcode=="")?(){}:(){
+                            onTap:
+                            // (_text==""||_scanBarcode=="")?(){}:
+                                (){
                               final idNum = _text.replaceAll(RegExp(r'[^0-9]'),'');
                               print(idNum);
                               print(_scanBarcode);
+                              submit();
                             },
                             splashColor: const Color(0x229DCEFF),
                             focusColor: Colors.white,
